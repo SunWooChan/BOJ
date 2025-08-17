@@ -1,4 +1,6 @@
 n = int(input())
-nn = int(input())
-list_nn = list(map(int, str(nn)))
-print(sum(list_nn))
+a = str(input())
+answer = 0
+for i in a:
+	answer += int(i)
+print(answer)
