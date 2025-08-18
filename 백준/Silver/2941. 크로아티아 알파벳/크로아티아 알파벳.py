@@ -1,25 +1,20 @@
+n = input()
 
-word = list(input())
-
-croatian = ['c=', 'c-', 'dz=', 'd-', 'lj', 'nj', 's=', 'z=']
-stack = []
+cro = set(['c=','c-','dz=','d-','lj','nj','s=','z='])
+arr = []
 count = 0
 
-for i in word:
-	stack.append(i)
+for i in n:
+	arr.append(i)
+	arr2 = ''.join(arr)
 	count += 1
-	if len(stack)==1:
-		continue
-	elif len(stack)>= 3 and stack[-3]+stack[-2]+stack[-1] in croatian :
-			count -=2
-			stack.pop()	
-			stack.pop()	
-			stack.pop()
-			stack.append('X')
-	elif len(stack)>=2 and stack[-2]+stack[-1] in croatian:
-			count -=1
-			stack.pop()	
-			stack.pop()	
-			stack.append('X')
+
+	if arr2[-3:] == 'dz=': # dz= 일 경우
+		count -= 2 # 한개 추가
+		arr = [] # 초기화
+	
+	elif arr2[-2:] in cro:
+		count -= 1
+		arr = []
 
 print(count)
